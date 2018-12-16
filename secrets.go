@@ -10,7 +10,7 @@ import (
 	"time"
 )
 
-func randBelow(n int) int {
+func RandBelow(n int) int {
 	rand.Seed(time.Now().UnixNano())
 	if n <= 0 {
 		fmt.Println("Upper bound must be positive.")
@@ -18,7 +18,7 @@ func randBelow(n int) int {
 	}
 	return rand.Intn(n)
 }
-func tokeBytes(n int) ([]byte, error) {
+func TokeBytes(n int) ([]byte, error) {
 	b := make([]byte, n)
 	_, err := cryand.Read(b)
 	if err != nil {
@@ -26,7 +26,7 @@ func tokeBytes(n int) ([]byte, error) {
 	}
 	return b, nil
 }
-func tokenHex(n int) (string, error) {
+func TokenHex(n int) (string, error) {
 	b := make([]byte, n)
 	_, err := cryand.Read(b)
 	if err != nil {
@@ -35,8 +35,8 @@ func tokenHex(n int) (string, error) {
 	s := hex.EncodeToString(b)
 	return s, nil
 }
-func tokenUrlSafe(n int) (string, error) {
-	data, err := tokeBytes(n)
+func TokenUrlSafe(n int) (string, error) {
+	data, err := TokeBytes(n)
 	if err != nil {
 		return "", err
 	}

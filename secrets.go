@@ -6,20 +6,18 @@ import (
 	cryand "crypto/rand"
 	"encoding/base64"
 	"encoding/hex"
-	"fmt"
+	"errors"
 	"math/rand"
-	"os"
 	"time"
 )
 
 // RandBelow function return random int in the range [0, n]
-func RandBelow(n int) int {
+func RandBelow(n int) (int, error) {
 	rand.Seed(time.Now().UnixNano())
 	if n <= 0 {
-		fmt.Println("Upper bound must be positive.")
-		os.Exit(1)
+		return 0, errors.New("n int must be more than 0")
 	}
-	return rand.Intn(n)
+	return rand.Intn(n), nil
 }
 
 // TokeBytes return bytes of len(n) with error nil and nil of bytes and error if n less than 0

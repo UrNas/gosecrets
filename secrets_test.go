@@ -5,33 +5,6 @@ import (
 	"testing"
 )
 
-func Test_RandBelow(t *testing.T) {
-	type args struct {
-		n int
-	}
-	tests := []struct {
-		name string
-		args args
-	}{
-		// TODO: Add test cases.
-		{
-			name: "randBelow",
-			args: args{n: 100},
-		},
-		{
-			name: "RandBelow",
-			args: args{n: 10},
-		},
-	}
-	for _, tt := range tests {
-		t.Run(tt.name, func(t *testing.T) {
-			if got := RandBelow(tt.args.n); got >= tt.args.n {
-				t.Errorf("RandBelow() = %v, want %v", got, tt.args.n)
-			}
-		})
-	}
-}
-
 func Test_TokenHex(t *testing.T) {
 	type args struct {
 		n int
@@ -126,6 +99,36 @@ func Test_TokenURLSafe(t *testing.T) {
 			}
 			if len(got) != len(tt.want) {
 				t.Errorf("TokenURLSafe() = %v, want %v", got, tt.want)
+			}
+		})
+	}
+}
+
+func TestRandBelow(t *testing.T) {
+	type args struct {
+		n int
+	}
+	tests := []struct {
+		name    string
+		args    args
+		wantErr bool
+	}{
+		// TODO: Add test cases.
+		{
+			name:    "RandBelow",
+			args:    args{n: 5},
+			wantErr: false,
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			got, err := RandBelow(tt.args.n)
+			if (err != nil) != tt.wantErr {
+				t.Errorf("RandBelow() error = %v, wantErr %v", err, tt.wantErr)
+				return
+			}
+			if got <= 0 {
+				t.Errorf("RandBelow() = %v, must be more than 0", got)
 			}
 		})
 	}

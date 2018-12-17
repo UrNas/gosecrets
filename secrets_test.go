@@ -115,8 +115,13 @@ func TestRandBelow(t *testing.T) {
 	}{
 		// TODO: Add test cases.
 		{
-			name:    "RandBelow",
-			args:    args{n: 5},
+			name:    "RandBelow_1",
+			args:    args{n: 1},
+			wantErr: false,
+		},
+		{
+			name:    "RandBelow_2",
+			args:    args{n: 2},
 			wantErr: false,
 		},
 	}

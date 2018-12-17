@@ -17,7 +17,7 @@ func RandBelow(n int) (int, error) {
 	if n <= 0 {
 		return 0, errors.New("n int must be more than 0")
 	}
-	return rand.Intn(n), nil
+	return rand.Intn(n) + n, nil
 }
 
 // TokeBytes return bytes of len(n) with error nil and nil of bytes and error if n less than 0

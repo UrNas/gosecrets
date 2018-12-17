@@ -37,8 +37,7 @@ func TokenHex(n int) (string, error) {
 	if err != nil {
 		return "", err
 	}
-	s := hex.EncodeToString(b)
-	return s, nil
+	return hex.EncodeToString(b), nil
 }
 
 //TokenURLSafe eturn a random URL-safe text string, in Base64 encoding.

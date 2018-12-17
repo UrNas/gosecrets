@@ -132,7 +132,7 @@ func TestRandBelow(t *testing.T) {
 				t.Errorf("RandBelow() error = %v, wantErr %v", err, tt.wantErr)
 				return
 			}
-			if got <= 0 {
+			if got < 0 || got >= tt.args.n {
 				t.Errorf("RandBelow() = %v, must be more than 0", got)
 			}
 		})

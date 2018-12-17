@@ -1,3 +1,5 @@
+// Package gosecrets generate cryptographically strong pseudo-random numbers suitable for
+// managing secrets such as account authentication, tokens, and similar.
 package gosecrets
 
 import (
@@ -10,6 +12,7 @@ import (
 	"time"
 )
 
+// RandBelow function return random int in the range [0, n]
 func RandBelow(n int) int {
 	rand.Seed(time.Now().UnixNano())
 	if n <= 0 {
@@ -18,6 +21,8 @@ func RandBelow(n int) int {
 	}
 	return rand.Intn(n)
 }
+
+// TokeBytes return bytes of len(n) with error nil and nil of bytes and error if n less than 0
 func TokeBytes(n int) ([]byte, error) {
 	b := make([]byte, n)
 	_, err := cryand.Read(b)
@@ -26,6 +31,8 @@ func TokeBytes(n int) ([]byte, error) {
 	}
 	return b, nil
 }
+
+// TokenHex return random string in hex for len(n) or empty string with error if n is less than 0
 func TokenHex(n int) (string, error) {
 	b := make([]byte, n)
 	_, err := cryand.Read(b)
@@ -35,7 +42,11 @@ func TokenHex(n int) (string, error) {
 	s := hex.EncodeToString(b)
 	return s, nil
 }
-func TokenUrlSafe(n int) (string, error) {
+
+//TokenURLSafe eturn a random URL-safe text string, in Base64 encoding.
+// The string has n random bytes.  If n is less or equal to 0
+// return empty string and error
+func TokenURLSafe(n int) (string, error) {
 	data, err := TokeBytes(n)
 	if err != nil {
 		return "", err

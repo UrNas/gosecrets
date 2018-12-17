@@ -98,7 +98,7 @@ func Test_TokeBytes(t *testing.T) {
 	}
 }
 
-func Test_TokenUrlSafe(t *testing.T) {
+func Test_TokenURLSafe(t *testing.T) {
 	type args struct {
 		n int
 	}
@@ -117,15 +117,15 @@ func Test_TokenUrlSafe(t *testing.T) {
 		},
 	}
 	for _, tt := range tests {
-		tt.want, _ = TokenUrlSafe(tt.args.n)
+		tt.want, _ = TokenURLSafe(tt.args.n)
 		t.Run(tt.name, func(t *testing.T) {
-			got, err := TokenUrlSafe(tt.args.n)
+			got, err := TokenURLSafe(tt.args.n)
 			if (err != nil) != tt.wantErr {
-				t.Errorf("TokenUrlSafe() error = %v, wantErr %v", err, tt.wantErr)
+				t.Errorf("TokenURLSafe() error = %v, wantErr %v", err, tt.wantErr)
 				return
 			}
 			if len(got) != len(tt.want) {
-				t.Errorf("TokenUrlSafe() = %v, want %v", got, tt.want)
+				t.Errorf("TokenURLSafe() = %v, want %v", got, tt.want)
 			}
 		})
 	}
